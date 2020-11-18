@@ -111,7 +111,7 @@ def searchemployee():
 
                 print(e)
                 result = "System has encountered some error, please try again later!"
-                return render_template('allemployee.html', length=length, result=result , status = 0)
+                return render_template('allemployees.html', length=length, result=result , status = 0)
 
 
         elif searchType == "empAge":
@@ -140,14 +140,14 @@ def searchemployee():
                 if len(data) == 0:
 
                     result = "No such records found..."
-                    return render_template('allemployee.html', length=length, result=result,status = 0)
+                    return render_template('allemployees.html', length=length, result=result,status = 0)
 
 
                 else:
 
                     result =  "Search results for age: " + age
 
-                    return render_template('allemployee.html', data=data, length=length, result=result, status=1)
+                    return render_template('allemployees.html', data=data, length=length, result=result, status=1)
 
                 cur.close()
 
@@ -157,7 +157,7 @@ def searchemployee():
 
                 print(e)
                 result = "System has encountered some error, please try again later!"
-                return render_template('allemployee.html', length=length, result=result , status = 0)
+                return render_template('allemployees.html', length=length, result=result , status = 0)
 
 
 @app.route('/deleteemployee.html', methods = ["GET","POST"])
