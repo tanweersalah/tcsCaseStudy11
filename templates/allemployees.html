@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee</title>
+
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<body>
+    <nav>
+        <h2 style="display: inline;" >CASE STUDY</h2>
+        <a class="nav-link" href="/deleteemployee.html">Delete Employee</a>
+        <a class="nav-link" href="/addemployee.html">Add Employee</a>
+        <a class="nav-link" href="/allemployees.html">All Employees</a>
+    </nav>
+    
+    <div class="main" style="width:auto;" >
+
+        <form action="/searchemployee.html" method="POST" style="text-align: center;">
+            <label for="empSea">Choose a field to search</label>
+            <select name="empSea" id="empSea">
+                <option id="empId" value="empId">Employee ID</option>
+                <option id="empNam" value="empNam">Employee Name</option>
+                <option id="empAge" value="empAge">Employee Age</option>
+            </select>
+            &nbsp; &nbsp;
+            <label for="searchtext">Enter keyword to search </label>
+            <input type="text" name="searchtext" id="searchtext" required>
+            &nbsp; &nbsp;
+            <input type="submit" value="Search Employee">
+        </form>
+
+        <br><br>
+
+        {% if status == 1 %}
+            <p class="result-success">{{ result }}</p>
+        {% endif %}
+
+        {% if status == 0 %}
+            <p class="result-error">{{ result }}</p>
+        {% endif %}
+
+        {% if length !=0 %}
+
+        <table>
+            <tr>
+              <th>Employee Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile No.</th>
+              <th>Date of Birth</th>
+              <th>Address</th>
+              <th></th>
+            </tr>
+
+            {% for row in data %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[5]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[4]}}</td>
+                <td class="tooltip edit-details-table" onclick="editbuttonclick(event)" ><a href="/updateemployee.html"><span class="tooltiptext">Edit Details</span></></td>
+            </tr>
+            {% endfor %}
+          </table>
+        
+        {% endif %}
+    </div>
+
+    <footer>
+        Case study by Team 4
+    </footer>
+</body>
+
+<script>
+    function editbuttonclick(e){
+        e.preventDefault();
+        var empid = e.toElement.parentElement.parentElement.children[0].innerHTML;
+        if(isNaN(empid)){
+            empid = e.toElement.parentElement.parentElement.parentElement.children[0].innerHTML;
+            var url = e.toElement.parentElement.href + "?empid=" + empid;
+            e.toElement.parentElement.href = url
+            location.href = e.toElement.parentElement.href;
+        }
+
+        else{
+            var url = e.toElement.href + "?empid=" + empid;
+            e.toElement.href = url
+            location.href = e.toElement.href;
+        }
+    }
+</script>
+
+
+</html>

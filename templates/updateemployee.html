@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee</title>
+
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<body>
+    <nav>
+        <h2 style="display: inline;" >CASE STUDY</h2>
+        <a class="nav-link" href="/deleteemployee.html">Delete Employee</a>
+        <a class="nav-link" href="/addemployee.html">Add Employee</a>
+        <a class="nav-link" href="/allemployees.html">All Employees</a>
+    </nav>
+
+    <div class="main" style="margin-top: 38px;">
+    
+    {% if status == 1 %}
+        <p class="result-success">{{ result }}</p>
+    {% endif %}
+
+    {% if status == 0 %}
+        <p class="result-error">{{ result }}</p>
+    {% endif %}
+
+    <h2>Update Details of Employee {{data[0]}}</h2>
+    <form action="/updateemployee.html/" , method = 'POST'>
+        <label for="empId">Employee Id</label>
+        <div>
+            <input type="text" name="empId" id="empId" value={{data[0]}} readonly>
+        </div>
+        <label for="empName">Full Name</label>
+        <div>
+            <input type="text" name="empName" id="empName" value="{{data[1]}}">
+        </div>
+        <p>{{data[1]}}</p>
+        <br>
+        <label for="empEmail">E-mail Id</label>
+        <div>
+            <input type="email" name="empEmail" id="empEmail" value="{{data[3]}}">
+        </div>
+        <br>
+        <label for="empDob">Date of Birth</label>
+        <div>
+            <input type="date" name="empDob" id="empDob" value="{{data[2]}}" required>
+        </div>
+        <br>
+        <label for="empNum">Mobile Number</label>
+        <div>
+            <input type="tel" name="empNum" id="empNum" value="{{data[5]}}">
+        </div>
+        <br>
+        <label for="empAdd"> Address</label>
+        <div>
+            <textarea name="empAdd" cols="40" rows="4">{{data[4]}}</textarea>
+        </div>
+        <br>
+        <div>
+            <input type="reset" value="Reset"> &nbsp;
+            <input type="submit" value="Update Details">
+        </div>
+    </form>
+    </div>
+
+    <footer>
+        Case study by Team 4
+    </footer>
+</body>
+
+</html>

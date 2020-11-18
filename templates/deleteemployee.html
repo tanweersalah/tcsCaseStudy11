@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee</title>
+
+    <link rel="stylesheet" href="../static/styles.css">
+
+</head>
+
+<body>
+    <nav>
+        <h2 style="display: inline;" >CASE STUDY</h2>
+        <a class="nav-link" href="/deleteemployee.html">Delete Employee</a>
+        <a class="nav-link" href="/addemployee.html">Add Employee</a>
+        <a class="nav-link" href="/allemployees.html">All Employees</a>
+    </nav>
+
+    <div class="main" style="margin-top: 13%;">
+
+        {% if status == 1 %}
+            <p class="result-success">{{ result }}</p>
+        {% endif %}
+
+        {% if status == 0 %}
+            <p class="result-error">{{ result }}</p>
+        {% endif %}
+
+        <h2> Delete Employee </h2>
+
+        <form action="/deleteemployee.html" , method = "POST">
+            <label for="empID"> Enter Employee id of employee </label>
+            <div>
+                <input type="text" name="empID" id="empID" required>
+            </div>
+            <br>
+            <div>
+                <input type="submit" value="Delete Employee">
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        Case study by Team 4
+    </footer>
+</body>
+
+</html>
