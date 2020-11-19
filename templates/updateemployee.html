@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Employee</title>
+    <title>Employee Management</title>
 
     <link rel="stylesheet" href="../static/styles.css">
 </head>
 
 <body>
     <nav>
-        <h2 style="display: inline;" >CASE STUDY</h2>
+        <h2 style="display: inline;" >EMPLOYEE MANAGEMENT</h2>
         <a class="nav-link" href="/deleteemployee.html">Delete Employee</a>
         <a class="nav-link" href="/addemployee.html">Add Employee</a>
         <a class="nav-link" href="/allemployees.html">All Employees</a>
     </nav>
 
-    <div class="main" style="margin-top: 38px;">
+    <div class="main">
     
     {% if status == 1 %}
         <p class="result-success">{{ result }}</p>
@@ -32,8 +32,9 @@
     <form action="/updateemployee.html/" , method = 'POST'>
         <label for="empId">Employee Id</label>
         <div>
-            <input type="text" name="empId" id="empId" value={{data[0]}} readonly>
+            <input type="text" name="empId" id="empId" value={{data[0]}} disabled>
         </div>
+        <br>
         <label for="empName">Full Name</label>
         <div>
             <input type="text" name="empName" id="empName" value="{{data[1]}}">
@@ -46,7 +47,7 @@
         <br>
         <label for="empDob">Date of Birth</label>
         <div>
-            <input type="date" name="empDob" id="empDob" value="{{data[2]}}" required>
+            <input type="date" name="empDob" id="empDob" value="{{data[2]}}" required disabled>
         </div>
         <br>
         <label for="empNum">Mobile Number</label>
@@ -58,7 +59,7 @@
         <div>
             <textarea name="empAdd" cols="40" rows="4">{{data[4]}}</textarea>
         </div>
-        <br>
+        <br><br>
         <div>
             <input type="reset" value="Reset"> &nbsp;
             <input type="submit" value="Update Details">
