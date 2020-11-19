@@ -117,6 +117,7 @@ def searchemployee():
         elif searchType == "empAge":
 
             age = searchText
+            print(age)
 
             try:
 
@@ -140,7 +141,7 @@ def searchemployee():
                 if len(data) == 0:
 
                     result = "No such records found..."
-                    return render_template('allemployees.html', length=length, result=result,status = 0)
+                    return render_template('allemployees.html', length=4, result=result,status = 0)
 
 
                 else:
@@ -210,10 +211,6 @@ def deleteemployee():
         return render_template('deleteemployee.html', result = result , status = status)
 
 
-
-
-
-
 @app.route('/updateemployee.html/', methods = ["GET","POST"])
 def updateemployee():
     cur = mysql.connection.cursor()
@@ -239,6 +236,7 @@ def updateemployee():
         ename = request.form.get('empName')
 
         try:
+            print(empID)
             cur.execute(
                 "update employeeTable set  edob = %s ,ename = %s ,email = %s ,mob =%s ,adress = %s where employ_id =%s",(dob, ename, email, mob, adr,empID))
             mysql.connection.commit()
@@ -255,8 +253,6 @@ def updateemployee():
             print(e)
 
 
-
-
 @app.route('/')
 @app.route('/allemployees.html',methods = ['GET' , 'POST'])
 def all_employee():
@@ -264,10 +260,12 @@ def all_employee():
     try :
         cur.execute('select * from employeetable')
         data = cur.fetchall()
+
         return render_template('allemployees.html', data=data )
     except Exception as e:
         print (e)
-    return render_template('allemployees.html',update = "SERVER ERROR" , status = 0)
+        update = "SERVER ERROR" #+ str(e)
+    return render_template('allemployees.html',result = update , status = 0)
 
 
 
@@ -279,6 +277,8 @@ def addemployee():
     if request.method == 'POST' :
         print(request.form)
         empID = request.form.get('empId')
+        if empID == "":
+            empID = None
         email = request.form.get('empEmail')
         dob = request.form.get('empDob')
         mob = request.form.get('empNum')
@@ -303,8 +303,6 @@ def addemployee():
             return render_template('addemployee.html', result=result, status=0)
 
 
-    if request.method == 'GET' :
-        result = ""
 
     return render_template('addemployee.html' , result = result )
 

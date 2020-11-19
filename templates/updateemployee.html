@@ -32,7 +32,7 @@
     <form action="/updateemployee.html/" , method = 'POST'>
         <label for="empId">Employee Id</label>
         <div>
-            <input type="text" name="empId" id="empId" value={{data[0]}} disabled>
+            <input type="text" name="empId" id="empId" value={{data[0]}} readonly>
         </div>
         <br>
         <label for="empName">Full Name</label>
@@ -47,7 +47,7 @@
         <br>
         <label for="empDob">Date of Birth</label>
         <div>
-            <input type="date" name="empDob" id="empDob" value="{{data[2]}}" required disabled>
+            <input type="date" name="empDob" id="empDob" value="{{data[2]}}" required >
         </div>
         <br>
         <label for="empNum">Mobile Number</label>
